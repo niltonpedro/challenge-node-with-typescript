@@ -5,6 +5,11 @@ interface Balance {
   outcome: number;
   total: number;
 }
+interface CreateTransitionDTO {
+  title: string;
+  value: number;
+  type: 'income' | 'outcome';
+}
 
 class TransactionsRepository {
   private transactions: Transaction[];
@@ -14,15 +19,24 @@ class TransactionsRepository {
   }
 
   public all(): Transaction[] {
-    // TODO
+    return this.transactions;
   }
 
-  public getBalance(): Balance {
-    // TODO
-  }
+  // public getBalance(): Balance {
+  //   // TODO
+  // }
 
-  public create(): Transaction {
-    // TODO
+  // public testingValidType(type: string): Transaction {
+  //   if (type !== 'income' || 'outcome') {
+  //   }
+  // }
+
+  public create({ title, value, type }: CreateTransitionDTO): Transaction {
+    const transiction = new Transaction({ title, value, type });
+
+    this.transactions.push(transiction);
+
+    return transiction;
   }
 }
 
