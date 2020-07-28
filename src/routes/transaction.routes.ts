@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
-import ListTransactionsServices from '../services/ListTransactionsService';
 
 const transactionRouter = Router();
 
@@ -10,10 +9,6 @@ const transactionsRepository = new TransactionsRepository();
 
 transactionRouter.get('/', (request, response) => {
   try {
-    const ListTransactions = new ListTransactionsServices(
-      transactionsRepository,
-    );
-
     const transactions = transactionsRepository.all();
     const balance = transactionsRepository.getBalance();
 
